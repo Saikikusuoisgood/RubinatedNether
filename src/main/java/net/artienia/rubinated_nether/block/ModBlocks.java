@@ -4,6 +4,7 @@ import net.artienia.rubinated_nether.RubinatedNether;
 import net.artienia.rubinated_nether.block.custom.FreezerBlock;
 import net.artienia.rubinated_nether.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -16,19 +17,22 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.BlockGetter;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RubinatedNether.MOD_ID);
 
-    public static final RegistryObject<Block> RUBY_BLOCK = registerBlock("ruby_block", () -> new Block(BlockBehaviour
-    .Properties.copy(Blocks.NETHERITE_BLOCK)
-    .mapColor(MapColor.FIRE)
-    ));
+    public static final net.neoforged.neoforge.registries.DeferredRegister.Blocks BLOCKS = net.neoforged.neoforge.registries.DeferredRegister.createBlocks(RubinatedNether.MOD_ID);
+
+    public static final RegistryObject<BLOCKS> RUBY_BLOCK = registerBlock("ruby_block", () -> new Block(BlockBehaviour
+    .Properties.ofFullCopy(Blocks.NETHERITE_BLOCK).mapColor(MapColor.FIRE)));
+
     public static final RegistryObject<Block> MOLTEN_RUBY_BLOCK = registerBlock("molten_ruby_block", () -> new RotatedPillarBlock(BlockBehaviour
     .Properties.copy(Blocks.ANCIENT_DEBRIS)
     .mapColor(MapColor.FIRE)
@@ -40,6 +44,7 @@ public class ModBlocks {
     .mapColor(MapColor.FIRE)
     .pushReaction(PushReaction.BLOCK)
     ));
+    
     public static final RegistryObject<StainedGlassBlock> RUBY_GLASS = registerBlock("ruby_glass", () -> new StainedGlassBlock(DyeColor.RED, BlockBehaviour
     .Properties.copy(Blocks.GLASS)
     .mapColor(MapColor.FIRE)

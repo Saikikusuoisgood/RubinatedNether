@@ -27,7 +27,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import org.slf4j.Logger;
+
+import java.awt.event.InputEvent;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(RubinatedNether.MOD_ID)
@@ -39,8 +43,10 @@ public class RubinatedNether
     private static final Logger LOGGER = LogUtils.getLogger();
 
 
-    public RubinatedNether()
+    public RubinatedNether(net.neoforged.bus.api.IEventBus modEventBus, ModContainer modContainer)
     {
+        modEventBus.addListener(this::commonSetup);
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
@@ -52,7 +58,6 @@ public class RubinatedNether
         ModRecipeSerializers.register(modEventBus);
 
 
-        modEventBus.addListener(this::commonSetup);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
