@@ -16,7 +16,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredBlock;
-
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.BlockGetter;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -106,8 +106,8 @@ public class ModBlocks {
         return toReturn;
     }
 
-    private static <T extends Block> DeferredBlock<BlockItem> registerBlockItem(String name, DeferredBlock<T> block) {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static <T extends Block> DeferredItem<BlockItem> registerBlockItem(String name, DeferredBlock<T> block) {
+        return ModItems.ITEMS.registerSimpleBlockItem(name, block);
     }
 
     public static void register(IEventBus eventBus) {
