@@ -4,10 +4,8 @@ import net.artienia.rubinated_nether.RubinatedNether;
 import net.artienia.rubinated_nether.block.custom.FreezerBlock;
 import net.artienia.rubinated_nether.item.ModItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -19,7 +17,6 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.BlockGetter;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.function.Supplier;
 

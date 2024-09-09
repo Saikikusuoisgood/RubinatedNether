@@ -16,9 +16,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.neoforged.event.server.ServerStartingEvent;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
@@ -26,6 +25,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.ModContainer;
 
@@ -42,8 +42,6 @@ public class RubinatedNether
     {
         modEventBus.addListener(this::commonSetup);
 
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         ModItems.register(modEventBus);
         ModBlocks.register((modEventBus));
         ModBlockEntities.register(modEventBus);
@@ -53,7 +51,7 @@ public class RubinatedNether
         ModRecipeSerializers.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(this);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
