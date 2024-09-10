@@ -11,7 +11,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.neoforged.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 import org.jetbrains.annotations.Nullable;
 
 public class ModCookingSerializer<T extends FreezingRecipe> implements RecipeSerializer<T> {
@@ -39,7 +39,7 @@ public class ModCookingSerializer<T extends FreezingRecipe> implements RecipeSer
         } else {
             String resultString = GsonHelper.getAsString(json, "result");
             ResourceLocation resultLocation = new ResourceLocation(resultString);
-            result = new ItemStack(ForgeRegistries.ITEMS.getValue(resultLocation));
+            result = new ItemStack(BuiltInRegistries.ITEM.getId(resultLocation));
             if (result.isEmpty()) {
                 throw new IllegalStateException("Item: " + resultString + " does not exist");
             }
