@@ -3,7 +3,7 @@ package net.artienia.rubinated_nether.worldgen;
 import net.artienia.rubinated_nether.RubinatedNether;
 import net.artienia.rubinated_nether.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
@@ -20,7 +20,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUBINATED_BLACKSTONE_KEY = registerKey("rubinated_blackstone");
 
 
-    public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+    public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest netherrackReplacables = new BlockMatchTest(Blocks.NETHERRACK);
         RuleTest magmaReplacables = new BlockMatchTest(Blocks.MAGMA_BLOCK);
         RuleTest gildedReplacables = new BlockMatchTest(Blocks.GILDED_BLACKSTONE);
@@ -38,10 +38,10 @@ public class ModConfiguredFeatures {
 
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(RubinatedNether.MOD_ID, name));
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(RubinatedNether.MOD_ID, name));
     }
 
-    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstapContext<ConfiguredFeature<?, ?>> context,
+    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstrapContext<ConfiguredFeature<?, ?>> context,
                                                                                           ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
         context.register(key, new ConfiguredFeature<>(feature, configuration));
     }
