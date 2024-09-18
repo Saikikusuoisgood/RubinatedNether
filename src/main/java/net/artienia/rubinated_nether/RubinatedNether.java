@@ -6,6 +6,8 @@ import net.artienia.rubinated_nether.block.ModBlocks;
 import net.artienia.rubinated_nether.block.entity.FreezerBlockEntity;
 import net.artienia.rubinated_nether.block.entity.ModBlockEntities;
 import net.artienia.rubinated_nether.block.entity.ModBlockEntityTypes;
+import net.artienia.rubinated_nether.enchantment.DualEffectEnchantment;
+import net.artienia.rubinated_nether.enchantment.ModEnchantments;
 import net.artienia.rubinated_nether.item.ModItems;
 import net.artienia.rubinated_nether.item.ModTabs;
 import net.artienia.rubinated_nether.recipe.ModRecipeSerializers;
@@ -52,6 +54,9 @@ public class RubinatedNether
         ModBlockEntityTypes.register(modEventBus);
         ModRecipeTypes.register(modEventBus);
         ModRecipeSerializers.register(modEventBus);
+        ModEnchantments.ENCHANTMENTS.register(modEventBus);
+
+        MinecraftForge.EVENT_BUS.register(new DualEffectEnchantment());
 
         modEventBus.addListener(this::commonSetup);
 
